@@ -1,4 +1,4 @@
-package com.platform.tickets.domain;
+package com.platform.tickets.domain.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -28,10 +28,10 @@ public class Event {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "start")
+    @Column(name = "event_start")
     private LocalDateTime start;
 
-    @Column(name = "end")
+    @Column(name = "event_end")
     private LocalDateTime end;
 
     @Column(name = "venue", nullable = false)
@@ -49,7 +49,7 @@ public class Event {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "organizer_id")
-    private User Organizer;
+    private User organizer;
 
     @ManyToMany(mappedBy = "attendingEvents")
     private List<User> attendees = new ArrayList<>();
