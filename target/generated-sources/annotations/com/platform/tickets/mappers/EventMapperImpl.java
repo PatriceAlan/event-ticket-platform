@@ -6,6 +6,8 @@ import com.platform.tickets.domain.dtos.CreateEventRequestDto;
 import com.platform.tickets.domain.dtos.CreateEventResponseDto;
 import com.platform.tickets.domain.dtos.CreateTicketTypeRequestDto;
 import com.platform.tickets.domain.dtos.CreateTicketTypeResponseDto;
+import com.platform.tickets.domain.dtos.GetEventDetailsResponseDto;
+import com.platform.tickets.domain.dtos.GetEventDetailsTicketTypeResponseDto;
 import com.platform.tickets.domain.dtos.ListEventResponseDto;
 import com.platform.tickets.domain.dtos.ListEventTicketTypeResponseDto;
 import com.platform.tickets.domain.entities.Event;
@@ -17,7 +19,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-11-04T14:34:36+0100",
+    date = "2025-11-04T16:22:04+0100",
     comments = "version: 1.6.3, compiler: javac, environment: Java 23.0.1 (Oracle Corporation)"
 )
 @Component
@@ -120,6 +122,48 @@ public class EventMapperImpl implements EventMapper {
         return listEventResponseDto;
     }
 
+    @Override
+    public GetEventDetailsTicketTypeResponseDto toGetEventDetailsTicketTypeResponseDto(TicketType ticketType) {
+        if ( ticketType == null ) {
+            return null;
+        }
+
+        GetEventDetailsTicketTypeResponseDto getEventDetailsTicketTypeResponseDto = new GetEventDetailsTicketTypeResponseDto();
+
+        getEventDetailsTicketTypeResponseDto.setId( ticketType.getId() );
+        getEventDetailsTicketTypeResponseDto.setName( ticketType.getName() );
+        getEventDetailsTicketTypeResponseDto.setPrice( ticketType.getPrice() );
+        getEventDetailsTicketTypeResponseDto.setDescription( ticketType.getDescription() );
+        getEventDetailsTicketTypeResponseDto.setTotalAvailable( ticketType.getTotalAvailable() );
+        getEventDetailsTicketTypeResponseDto.setCreatedAt( ticketType.getCreatedAt() );
+        getEventDetailsTicketTypeResponseDto.setUpdatedAt( ticketType.getUpdatedAt() );
+
+        return getEventDetailsTicketTypeResponseDto;
+    }
+
+    @Override
+    public GetEventDetailsResponseDto toGetEventDetailsResponseDto(Event event) {
+        if ( event == null ) {
+            return null;
+        }
+
+        GetEventDetailsResponseDto getEventDetailsResponseDto = new GetEventDetailsResponseDto();
+
+        getEventDetailsResponseDto.setId( event.getId() );
+        getEventDetailsResponseDto.setName( event.getName() );
+        getEventDetailsResponseDto.setStart( event.getStart() );
+        getEventDetailsResponseDto.setEnd( event.getEnd() );
+        getEventDetailsResponseDto.setVenue( event.getVenue() );
+        getEventDetailsResponseDto.setSalesStart( event.getSalesStart() );
+        getEventDetailsResponseDto.setSalesEnd( event.getSalesEnd() );
+        getEventDetailsResponseDto.setStatus( event.getStatus() );
+        getEventDetailsResponseDto.setTicketTypes( ticketTypeListToGetEventDetailsTicketTypeResponseDtoList( event.getTicketTypes() ) );
+        getEventDetailsResponseDto.setCreatedAt( event.getCreatedAt() );
+        getEventDetailsResponseDto.setUpdatedAt( event.getUpdatedAt() );
+
+        return getEventDetailsResponseDto;
+    }
+
     protected List<CreateTicketTypeRequest> createTicketTypeRequestDtoListToCreateTicketTypeRequestList(List<CreateTicketTypeRequestDto> list) {
         if ( list == null ) {
             return null;
@@ -172,6 +216,19 @@ public class EventMapperImpl implements EventMapper {
         List<ListEventTicketTypeResponseDto> list1 = new ArrayList<ListEventTicketTypeResponseDto>( list.size() );
         for ( TicketType ticketType : list ) {
             list1.add( toDto( ticketType ) );
+        }
+
+        return list1;
+    }
+
+    protected List<GetEventDetailsTicketTypeResponseDto> ticketTypeListToGetEventDetailsTicketTypeResponseDtoList(List<TicketType> list) {
+        if ( list == null ) {
+            return null;
+        }
+
+        List<GetEventDetailsTicketTypeResponseDto> list1 = new ArrayList<GetEventDetailsTicketTypeResponseDto>( list.size() );
+        for ( TicketType ticketType : list ) {
+            list1.add( toGetEventDetailsTicketTypeResponseDto( ticketType ) );
         }
 
         return list1;
