@@ -2,6 +2,8 @@ package com.platform.tickets.mappers;
 
 import com.platform.tickets.domain.CreateEventRequest;
 import com.platform.tickets.domain.CreateTicketTypeRequest;
+import com.platform.tickets.domain.UpdateEventRequest;
+import com.platform.tickets.domain.UpdateTicketTypeRequest;
 import com.platform.tickets.domain.dtos.*;
 import com.platform.tickets.domain.entities.Event;
 import com.platform.tickets.domain.entities.TicketType;
@@ -24,5 +26,13 @@ public interface EventMapper {
     GetEventDetailsTicketTypeResponseDto toGetEventDetailsTicketTypeResponseDto(TicketType ticketType);
 
     GetEventDetailsResponseDto toGetEventDetailsResponseDto(Event event);
+
+    UpdateTicketTypeRequest fromDto(UpdateTicketTypeResponseDto dto);
+
+    UpdateEventRequest fromDto(UpdateEventRequestDto dto);
+
+    UpdateTicketTypeResponseDto toUpdateTicketTypeResponseDto(TicketType ticketType);
+
+    UpdateEventResponseDto toUpdateEventResponseDto(Event event);
 
 }

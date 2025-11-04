@@ -2,6 +2,8 @@ package com.platform.tickets.mappers;
 
 import com.platform.tickets.domain.CreateEventRequest;
 import com.platform.tickets.domain.CreateTicketTypeRequest;
+import com.platform.tickets.domain.UpdateEventRequest;
+import com.platform.tickets.domain.UpdateTicketTypeRequest;
 import com.platform.tickets.domain.dtos.CreateEventRequestDto;
 import com.platform.tickets.domain.dtos.CreateEventResponseDto;
 import com.platform.tickets.domain.dtos.CreateTicketTypeRequestDto;
@@ -10,6 +12,10 @@ import com.platform.tickets.domain.dtos.GetEventDetailsResponseDto;
 import com.platform.tickets.domain.dtos.GetEventDetailsTicketTypeResponseDto;
 import com.platform.tickets.domain.dtos.ListEventResponseDto;
 import com.platform.tickets.domain.dtos.ListEventTicketTypeResponseDto;
+import com.platform.tickets.domain.dtos.UpdateEventRequestDto;
+import com.platform.tickets.domain.dtos.UpdateEventResponseDto;
+import com.platform.tickets.domain.dtos.UpdateTicketTypeRequestDto;
+import com.platform.tickets.domain.dtos.UpdateTicketTypeResponseDto;
 import com.platform.tickets.domain.entities.Event;
 import com.platform.tickets.domain.entities.TicketType;
 import java.util.ArrayList;
@@ -19,7 +25,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-11-04T16:22:04+0100",
+    date = "2025-11-04T18:15:37+0100",
     comments = "version: 1.6.3, compiler: javac, environment: Java 23.0.1 (Oracle Corporation)"
 )
 @Component
@@ -164,6 +170,86 @@ public class EventMapperImpl implements EventMapper {
         return getEventDetailsResponseDto;
     }
 
+    @Override
+    public UpdateTicketTypeRequest fromDto(UpdateTicketTypeResponseDto dto) {
+        if ( dto == null ) {
+            return null;
+        }
+
+        UpdateTicketTypeRequest updateTicketTypeRequest = new UpdateTicketTypeRequest();
+
+        updateTicketTypeRequest.setId( dto.getId() );
+        updateTicketTypeRequest.setName( dto.getName() );
+        updateTicketTypeRequest.setPrice( dto.getPrice() );
+        updateTicketTypeRequest.setDescription( dto.getDescription() );
+        updateTicketTypeRequest.setTotalAvailable( dto.getTotalAvailable() );
+
+        return updateTicketTypeRequest;
+    }
+
+    @Override
+    public UpdateEventRequest fromDto(UpdateEventRequestDto dto) {
+        if ( dto == null ) {
+            return null;
+        }
+
+        UpdateEventRequest updateEventRequest = new UpdateEventRequest();
+
+        updateEventRequest.setId( dto.getId() );
+        updateEventRequest.setName( dto.getName() );
+        updateEventRequest.setStart( dto.getStart() );
+        updateEventRequest.setEnd( dto.getEnd() );
+        updateEventRequest.setVenue( dto.getVenue() );
+        updateEventRequest.setSaleStart( dto.getSaleStart() );
+        updateEventRequest.setSalesEnd( dto.getSalesEnd() );
+        updateEventRequest.setStatus( dto.getStatus() );
+        updateEventRequest.setTicketTypes( updateTicketTypeRequestDtoListToUpdateTicketTypeRequestList( dto.getTicketTypes() ) );
+
+        return updateEventRequest;
+    }
+
+    @Override
+    public UpdateTicketTypeResponseDto toUpdateTicketTypeResponseDto(TicketType ticketType) {
+        if ( ticketType == null ) {
+            return null;
+        }
+
+        UpdateTicketTypeResponseDto updateTicketTypeResponseDto = new UpdateTicketTypeResponseDto();
+
+        updateTicketTypeResponseDto.setId( ticketType.getId() );
+        updateTicketTypeResponseDto.setName( ticketType.getName() );
+        updateTicketTypeResponseDto.setPrice( ticketType.getPrice() );
+        updateTicketTypeResponseDto.setDescription( ticketType.getDescription() );
+        updateTicketTypeResponseDto.setTotalAvailable( ticketType.getTotalAvailable() );
+        updateTicketTypeResponseDto.setCreatedAt( ticketType.getCreatedAt() );
+        updateTicketTypeResponseDto.setUpdatedAt( ticketType.getUpdatedAt() );
+
+        return updateTicketTypeResponseDto;
+    }
+
+    @Override
+    public UpdateEventResponseDto toUpdateEventResponseDto(Event event) {
+        if ( event == null ) {
+            return null;
+        }
+
+        UpdateEventResponseDto updateEventResponseDto = new UpdateEventResponseDto();
+
+        updateEventResponseDto.setId( event.getId() );
+        updateEventResponseDto.setName( event.getName() );
+        updateEventResponseDto.setStart( event.getStart() );
+        updateEventResponseDto.setEnd( event.getEnd() );
+        updateEventResponseDto.setVenue( event.getVenue() );
+        updateEventResponseDto.setSalesStart( event.getSalesStart() );
+        updateEventResponseDto.setSalesEnd( event.getSalesEnd() );
+        updateEventResponseDto.setStatus( event.getStatus() );
+        updateEventResponseDto.setTicketTypes( ticketTypeListToUpdateTicketTypeResponseDtoList( event.getTicketTypes() ) );
+        updateEventResponseDto.setCreatedAt( event.getCreatedAt() );
+        updateEventResponseDto.setUpdatedAt( event.getUpdatedAt() );
+
+        return updateEventResponseDto;
+    }
+
     protected List<CreateTicketTypeRequest> createTicketTypeRequestDtoListToCreateTicketTypeRequestList(List<CreateTicketTypeRequestDto> list) {
         if ( list == null ) {
             return null;
@@ -229,6 +315,48 @@ public class EventMapperImpl implements EventMapper {
         List<GetEventDetailsTicketTypeResponseDto> list1 = new ArrayList<GetEventDetailsTicketTypeResponseDto>( list.size() );
         for ( TicketType ticketType : list ) {
             list1.add( toGetEventDetailsTicketTypeResponseDto( ticketType ) );
+        }
+
+        return list1;
+    }
+
+    protected UpdateTicketTypeRequest updateTicketTypeRequestDtoToUpdateTicketTypeRequest(UpdateTicketTypeRequestDto updateTicketTypeRequestDto) {
+        if ( updateTicketTypeRequestDto == null ) {
+            return null;
+        }
+
+        UpdateTicketTypeRequest updateTicketTypeRequest = new UpdateTicketTypeRequest();
+
+        updateTicketTypeRequest.setId( updateTicketTypeRequestDto.getId() );
+        updateTicketTypeRequest.setName( updateTicketTypeRequestDto.getName() );
+        updateTicketTypeRequest.setPrice( updateTicketTypeRequestDto.getPrice() );
+        updateTicketTypeRequest.setDescription( updateTicketTypeRequestDto.getDescription() );
+        updateTicketTypeRequest.setTotalAvailable( updateTicketTypeRequestDto.getTotalAvailable() );
+
+        return updateTicketTypeRequest;
+    }
+
+    protected List<UpdateTicketTypeRequest> updateTicketTypeRequestDtoListToUpdateTicketTypeRequestList(List<UpdateTicketTypeRequestDto> list) {
+        if ( list == null ) {
+            return null;
+        }
+
+        List<UpdateTicketTypeRequest> list1 = new ArrayList<UpdateTicketTypeRequest>( list.size() );
+        for ( UpdateTicketTypeRequestDto updateTicketTypeRequestDto : list ) {
+            list1.add( updateTicketTypeRequestDtoToUpdateTicketTypeRequest( updateTicketTypeRequestDto ) );
+        }
+
+        return list1;
+    }
+
+    protected List<UpdateTicketTypeResponseDto> ticketTypeListToUpdateTicketTypeResponseDtoList(List<TicketType> list) {
+        if ( list == null ) {
+            return null;
+        }
+
+        List<UpdateTicketTypeResponseDto> list1 = new ArrayList<UpdateTicketTypeResponseDto>( list.size() );
+        for ( TicketType ticketType : list ) {
+            list1.add( toUpdateTicketTypeResponseDto( ticketType ) );
         }
 
         return list1;
