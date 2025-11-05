@@ -10,8 +10,11 @@ import com.platform.tickets.domain.dtos.CreateTicketTypeRequestDto;
 import com.platform.tickets.domain.dtos.CreateTicketTypeResponseDto;
 import com.platform.tickets.domain.dtos.GetEventDetailsResponseDto;
 import com.platform.tickets.domain.dtos.GetEventDetailsTicketTypeResponseDto;
+import com.platform.tickets.domain.dtos.GetPublishedEventDetailsResponseDto;
+import com.platform.tickets.domain.dtos.GetPublishedEventDetailsTicketTypesResponseDto;
 import com.platform.tickets.domain.dtos.ListEventResponseDto;
 import com.platform.tickets.domain.dtos.ListEventTicketTypeResponseDto;
+import com.platform.tickets.domain.dtos.ListPublishedEventResponseDto;
 import com.platform.tickets.domain.dtos.UpdateEventRequestDto;
 import com.platform.tickets.domain.dtos.UpdateEventResponseDto;
 import com.platform.tickets.domain.dtos.UpdateTicketTypeRequestDto;
@@ -25,7 +28,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-11-04T18:15:37+0100",
+    date = "2025-11-05T00:47:15+0100",
     comments = "version: 1.6.3, compiler: javac, environment: Java 23.0.1 (Oracle Corporation)"
 )
 @Component
@@ -250,6 +253,57 @@ public class EventMapperImpl implements EventMapper {
         return updateEventResponseDto;
     }
 
+    @Override
+    public ListPublishedEventResponseDto toListPublishedEventResponseDto(Event event) {
+        if ( event == null ) {
+            return null;
+        }
+
+        ListPublishedEventResponseDto listPublishedEventResponseDto = new ListPublishedEventResponseDto();
+
+        listPublishedEventResponseDto.setId( event.getId() );
+        listPublishedEventResponseDto.setName( event.getName() );
+        listPublishedEventResponseDto.setStart( event.getStart() );
+        listPublishedEventResponseDto.setEnd( event.getEnd() );
+        listPublishedEventResponseDto.setVenue( event.getVenue() );
+
+        return listPublishedEventResponseDto;
+    }
+
+    @Override
+    public GetPublishedEventDetailsTicketTypesResponseDto toGetPublishedEventDetailsTicketTypesResponseDto(TicketType ticketType) {
+        if ( ticketType == null ) {
+            return null;
+        }
+
+        GetPublishedEventDetailsTicketTypesResponseDto getPublishedEventDetailsTicketTypesResponseDto = new GetPublishedEventDetailsTicketTypesResponseDto();
+
+        getPublishedEventDetailsTicketTypesResponseDto.setId( ticketType.getId() );
+        getPublishedEventDetailsTicketTypesResponseDto.setName( ticketType.getName() );
+        getPublishedEventDetailsTicketTypesResponseDto.setPrice( ticketType.getPrice() );
+        getPublishedEventDetailsTicketTypesResponseDto.setDescription( ticketType.getDescription() );
+
+        return getPublishedEventDetailsTicketTypesResponseDto;
+    }
+
+    @Override
+    public GetPublishedEventDetailsResponseDto toGetPublishedEventDetailsResponseDto(Event event) {
+        if ( event == null ) {
+            return null;
+        }
+
+        GetPublishedEventDetailsResponseDto getPublishedEventDetailsResponseDto = new GetPublishedEventDetailsResponseDto();
+
+        getPublishedEventDetailsResponseDto.setId( event.getId() );
+        getPublishedEventDetailsResponseDto.setName( event.getName() );
+        getPublishedEventDetailsResponseDto.setStart( event.getStart() );
+        getPublishedEventDetailsResponseDto.setEnd( event.getEnd() );
+        getPublishedEventDetailsResponseDto.setVenue( event.getVenue() );
+        getPublishedEventDetailsResponseDto.setTicketTypes( ticketTypeListToGetPublishedEventDetailsTicketTypesResponseDtoList( event.getTicketTypes() ) );
+
+        return getPublishedEventDetailsResponseDto;
+    }
+
     protected List<CreateTicketTypeRequest> createTicketTypeRequestDtoListToCreateTicketTypeRequestList(List<CreateTicketTypeRequestDto> list) {
         if ( list == null ) {
             return null;
@@ -357,6 +411,19 @@ public class EventMapperImpl implements EventMapper {
         List<UpdateTicketTypeResponseDto> list1 = new ArrayList<UpdateTicketTypeResponseDto>( list.size() );
         for ( TicketType ticketType : list ) {
             list1.add( toUpdateTicketTypeResponseDto( ticketType ) );
+        }
+
+        return list1;
+    }
+
+    protected List<GetPublishedEventDetailsTicketTypesResponseDto> ticketTypeListToGetPublishedEventDetailsTicketTypesResponseDtoList(List<TicketType> list) {
+        if ( list == null ) {
+            return null;
+        }
+
+        List<GetPublishedEventDetailsTicketTypesResponseDto> list1 = new ArrayList<GetPublishedEventDetailsTicketTypesResponseDto>( list.size() );
+        for ( TicketType ticketType : list ) {
+            list1.add( toGetPublishedEventDetailsTicketTypesResponseDto( ticketType ) );
         }
 
         return list1;
