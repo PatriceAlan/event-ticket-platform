@@ -1,7 +1,6 @@
 package com.platform.tickets.domain;
 
 import com.platform.tickets.domain.entities.EventStatusEnum;
-import com.platform.tickets.domain.entities.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
