@@ -20,9 +20,10 @@ public class UpdateEventRequest {
     private LocalDateTime start;
     private LocalDateTime end;
     private String Venue;
-    private LocalDateTime saleStart;
+    private LocalDateTime salesStart;
     private LocalDateTime salesEnd;
     private EventStatusEnum status;
     private List<UpdateTicketTypeRequest> ticketTypes = new ArrayList<>();
+
 
 }

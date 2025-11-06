@@ -28,7 +28,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-11-06T17:44:55+0100",
+    date = "2025-11-06T20:16:13+0100",
     comments = "version: 1.6.3, compiler: javac, environment: Java 23.0.1 (Oracle Corporation)"
 )
 @Component
@@ -62,7 +62,6 @@ public class EventMapperImpl implements EventMapper {
         createEventRequest.setStart( dto.getStart() );
         createEventRequest.setEnd( dto.getEnd() );
         createEventRequest.setVenue( dto.getVenue() );
-        createEventRequest.setSaleStart( dto.getSaleStart() );
         createEventRequest.setSalesEnd( dto.getSalesEnd() );
         createEventRequest.setStatus( dto.getStatus() );
         createEventRequest.setTicketTypes( createTicketTypeRequestDtoListToCreateTicketTypeRequestList( dto.getTicketTypes() ) );
@@ -203,7 +202,6 @@ public class EventMapperImpl implements EventMapper {
         updateEventRequest.setStart( dto.getStart() );
         updateEventRequest.setEnd( dto.getEnd() );
         updateEventRequest.setVenue( dto.getVenue() );
-        updateEventRequest.setSaleStart( dto.getSaleStart() );
         updateEventRequest.setSalesEnd( dto.getSalesEnd() );
         updateEventRequest.setStatus( dto.getStatus() );
         updateEventRequest.setTicketTypes( updateTicketTypeRequestDtoListToUpdateTicketTypeRequestList( dto.getTicketTypes() ) );

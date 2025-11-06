@@ -43,8 +43,8 @@ public class EventServiceImpl implements EventService {
 
         List<TicketType> ticketTypesToCreate =  event.getTicketTypes().stream().map(ticketType -> {
             TicketType ticketTypeToCreate = new TicketType();
-            ticketTypeToCreate.setName(ticketTypeToCreate.getName());
-            ticketTypeToCreate.setPrice(ticketTypeToCreate.getPrice());
+            ticketTypeToCreate.setName(ticketType.getName());
+            ticketTypeToCreate.setPrice(ticketType.getPrice());
             ticketTypeToCreate.setTotalAvailable(ticketType.getTotalAvailable());
             ticketTypeToCreate.setEvent(eventToCreate);
             return ticketTypeToCreate;
@@ -55,8 +55,8 @@ public class EventServiceImpl implements EventService {
         eventToCreate.setStart(event.getStart());
         eventToCreate.setEnd(event.getEnd());
         eventToCreate.setVenue(event.getVenue());
-        eventToCreate.setSalesStart(event.getSaleStart());
-        eventToCreate.setSalesEnd(eventToCreate.getSalesEnd());
+        eventToCreate.setSalesStart(event.getSalesStart());
+        eventToCreate.setSalesEnd(event.getSalesEnd());
         eventToCreate.setStatus(event.getStatus());
         eventToCreate.setOrganizer(organizer);
         eventToCreate.setTicketTypes(ticketTypesToCreate);
@@ -95,7 +95,7 @@ public class EventServiceImpl implements EventService {
         existingEvent.setStart(event.getStart());
         existingEvent.setEnd(event.getEnd());
         existingEvent.setVenue(event.getVenue());
-        existingEvent.setSalesStart(event.getSaleStart());
+        existingEvent.setSalesStart(event.getSalesStart());
         existingEvent.setSalesEnd(event.getSalesEnd());
         existingEvent.setStatus(event.getStatus());
 
@@ -116,8 +116,8 @@ public class EventServiceImpl implements EventService {
             if(null == ticketType.getId()) {
 
                 TicketType ticketTypeToCreate = new TicketType();
-                ticketTypeToCreate.setName(ticketTypeToCreate.getName());
-                ticketTypeToCreate.setPrice(ticketTypeToCreate.getPrice());
+                ticketTypeToCreate.setName(ticketType.getName());
+                ticketTypeToCreate.setPrice(ticketType.getPrice());
                 ticketTypeToCreate.setTotalAvailable(ticketType.getTotalAvailable());
                 ticketTypeToCreate.setEvent(existingEvent);
                 existingEvent.getTicketTypes().add(ticketTypeToCreate);
