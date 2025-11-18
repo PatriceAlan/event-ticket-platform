@@ -1,6 +1,8 @@
 # Event Ticketing Platform
 ![ticketing system](ticketing_system.png)
 
+Project brief credit: [Devtiro](https://github.com/adbourne)
+
 ## Summary
 A web-based platform enabling users to create events, manage ticket sales, and generate QR-coded tickets for attendees, streamlining the event management and ticket distribution process.
 
